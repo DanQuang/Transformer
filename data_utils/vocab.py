@@ -45,7 +45,14 @@ class Vocab:
     
     def convert_ids_to_tokens(self, ids: list):
         tokens = [self.idx2word[idx] for idx in ids]
-        return [token for token in tokens if token not in ['<eos>', '<sos>']]
+        result = []
+        for token in tokens:
+            if token == "<sos>":
+                continue
+            if token == "<eos>":
+                break
+            result.append(token)
+        return result
     
     def vocab_size(self):
         return self.n_words

@@ -67,6 +67,7 @@ class Infer_Task:
             with torch.inference_mode():
                 epoch_loss = 0
                 predict_tokens_list = []
+                gt = [data["en_sentence"] for data in self.load_data.test_dataset]
                 for _, item in enumerate(tqdm(test)):
                     source, target = item["de_ids"].to(self.device), item["en_ids"].to(self.device)
                     output = self.model(source, target)
@@ -77,10 +78,10 @@ class Infer_Task:
                     # output: [batch_size, target_len, target_vocab_size]
                     output_dim = output.shape[-1] # target_vocab_size
 
-                    output = output[:, 1:, :].contiguous().view(-1, output_dim)
+                    output = output[:, :, :].contiguous().view(-1, output_dim)
                     # output: [batch_size*(target_len - 1), target_vocab_size]
 
-                    target = target[:, 1:].contiguous().view(-1)
+                    target = target[:, :].contiguous().view(-1)
                     # target: [batch_size*(target_len - 1)]
 
                     loss = self.criterion(output, target)
@@ -96,5 +97,6 @@ class Infer_Task:
                 list_sentence = [' '.join(self.vocab_en.convert_ids_to_tokens(ids)) for ids in concatenated_tokens]
 
                 # make csv file
-                df = pd.DataFrame({"predict": list_sentence})
+                df = pd.DataFrame({"predict": list_sentence,
+                                   "ground truth": gt})
                 df.to_csv("result.csv", index= False)

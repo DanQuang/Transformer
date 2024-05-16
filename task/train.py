@@ -95,10 +95,10 @@ class Train_Task:
                 # outputs: [batch_size, target_len, target_vocab_size]
                 output_dim = output.shape[-1] # target_vocab_size
 
-                output = output[:, 1:, :].contiguous().view(-1, output_dim)
+                output = output[:, :, :].contiguous().view(-1, output_dim)
                 # output: [batch_size*(target_len - 1), target_vocab_size]
 
-                target = target[:, 1:].contiguous().view(-1)
+                target = target[:, :].contiguous().view(-1)
                 # target: [batch_size*(target_len - 1)]
 
                 loss = self.criterion(output, target)
@@ -121,10 +121,10 @@ class Train_Task:
                     # outputs: [batch_size, target_len, target_vocab_size]
                     output_dim = output.shape[-1] # target_vocab_size
 
-                    output = output[:, 1:, :].contiguous().view(-1, output_dim)
+                    output = output[:, :, :].contiguous().view(-1, output_dim)
                     # output: [batch_size*(target_len - 1), target_vocab_size]
 
-                    target = target[:, 1:].contiguous().view(-1)
+                    target = target[:, :].contiguous().view(-1)
                     # target: [batch_size*(target_len - 1)]
 
                     loss = self.criterion(output, target)

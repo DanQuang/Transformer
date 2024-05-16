@@ -10,7 +10,7 @@ class PositionalEncoding(nn.Module):
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
 
         # create a matrix shape [seq_len, embedding_dim]
-        self.pe = torch.zeros((self.seq_len, self.embedding_dim))
+        self.pe = torch.zeros((self.seq_len, self.embedding_dim)).to(self.device)
         self.pe.requires_grad = False
 
         position = torch.arange(0, self.seq_len, dtype= torch.float).unsqueeze(1) # [seq_len, 1]
