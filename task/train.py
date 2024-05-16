@@ -117,7 +117,7 @@ class Train_Task:
             with torch.inference_mode():
                 for _, item in enumerate(tqdm(dev)):
                     source, target = item["de_ids"].to(self.device), item["en_ids"].to(self.device)
-                    output = self.model(source, target, 0) # turn off teacher fourcing
+                    output = self.model(source, target)
                     # outputs: [batch_size, target_len, target_vocab_size]
                     output_dim = output.shape[-1] # target_vocab_size
 

@@ -45,3 +45,5 @@ class DecoderBlock(nn.Module):
         # 5. add and norm
         x = self.dropout3(x)
         x = self.norm3(x + _x)
+
+        return x

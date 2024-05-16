@@ -69,7 +69,7 @@ class Infer_Task:
                 predict_tokens_list = []
                 for _, item in enumerate(tqdm(test)):
                     source, target = item["de_ids"].to(self.device), item["en_ids"].to(self.device)
-                    output = self.model(source, target, 0) # turn off teacher fourcing
+                    output = self.model(source, target)
 
                     predict_token = output.argmax(-1)
                     predict_tokens_list.append(predict_token)

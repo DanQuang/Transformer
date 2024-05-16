@@ -28,7 +28,7 @@ class Vocab:
 
         sorted_word_count = dict(sorted(word_count.items(), key= lambda x: x[1], reverse= True))
 
-        self.word2idx = {'<sos>': 0, '<eos>': 1, '<unk>': 2, '<pad>': 3}
+        self.word2idx = {'<pad>': 0, '<sos>': 1, '<eos>': 2, '<unk>': 3}
         self.n_words = 4
 
         for word in sorted_word_count.keys():
