@@ -15,3 +15,4 @@ class LayerNorm(nn.Module):
 
         out = (x - mean) / torch.sqrt(var + self.eps)
         out = self.gamma*out +self.beta
+        return out

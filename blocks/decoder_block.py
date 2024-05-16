@@ -7,6 +7,7 @@ from layers.position_wise_feed_forward import PositionWiseFeedForward
 
 class DecoderBlock(nn.Module):
     def __init__(self, embedding_dim, hidden, n_head, dropout):
+        super(DecoderBlock, self).__init__()
         self.self_attention = MultiHeadAttention(embedding_dim, n_head)
         self.norm1 = LayerNorm(embedding_dim)
         self.dropout1 = nn.Dropout(dropout)

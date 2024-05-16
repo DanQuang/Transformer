@@ -16,8 +16,7 @@ class Decoder(nn.Module):
         self.layers = nn.ModuleList([DecoderBlock(embedding_dim= embedding_dim,
                                                   hidden= hidden,
                                                   n_head= n_head,
-                                                  dropout= dropout)
-                                    for _ in range(n_layers)])
+                                                  dropout= dropout) for _ in range(n_layers)])
         
 
     def forward(self, trg, enc_src, trg_mask, src_mask):

@@ -47,7 +47,7 @@ class Transformer(nn.Module):
         return src_mask
     
     def make_trg_mask(self, trg: torch.Tensor):
-        trg_pad_mask = (trg != self.trg_pad_idx).unsqueeze(1).unsqueeze() # [batch_size, 1, 1, seq_len]
+        trg_pad_mask = (trg != self.trg_pad_idx).unsqueeze(1).unsqueeze(1) # [batch_size, 1, 1, seq_len]
         seq_len = trg.shape[-1]
         trg_sub_mask = torch.tril(torch.ones(seq_len, seq_len)).type(torch.ByteTensor).to(self.device)
         trg_mask = trg_pad_mask & trg_sub_mask

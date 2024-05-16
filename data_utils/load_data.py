@@ -1,5 +1,5 @@
 from torch.utils.data import Dataset, DataLoader
-from vocab import Vocab
+from data_utils.vocab import Vocab
 import pandas as pd
 import datasets
 from utils.utils import collate_fn

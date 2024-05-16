@@ -16,8 +16,7 @@ class Encoder(nn.Module):
         self.layers = nn.ModuleList([EncoderBlock(embedding_dim= embedding_dim,
                                                   hidden= hidden,
                                                   n_head= n_head,
-                                                  dropout= dropout)]
-                                    for _ in range(n_layers))
+                                                  dropout= dropout) for _ in range(n_layers)])
         
     
     def forward(self, x, src_mask):

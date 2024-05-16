@@ -49,7 +49,7 @@ class Infer_Task:
                                  seq_len= self.seq_len,
                                  hidden= self.hidden,
                                  n_layers= self.n_layers,
-                                 dropout= self.dropout)
+                                 dropout= self.dropout).to(self.device)
         
         self.criterion = nn.CrossEntropyLoss(ignore_index= self.en_pad_idx)
 
